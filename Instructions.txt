@@ -1,0 +1,31 @@
+prima di lanciare il server impostare dal terminale 
+
+impostazione delle variabili d'ambiente 
+: NODE_ENV 
+    export NODE_ENV=development
+: JWT SECRET
+    export JWT_SECRET=awv4BcIzsRysXkhoSAb8t8lNENgXSqBruVlLwd45kGdYjeJHLap9LUJ1t9DTdw36DvLcWs3qEkPyCY6vOyNljlh2Er952h2gDzYwG82rs1qfTzdVIg89KTaQ4SWI1YGY
+
+
+in caso di errore 
+MySQL 8.0 - Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+Eseguire queste 2 query dal client MySQL
+
+1) ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
+
+2) flush privileges;
+
+
+Per riavviare MySQL da console 
+sudo /usr/local/mysql/bin/mysqld_safe
+
+google IDClient
+5946943886-0hklpm4l7up7l5d8cpn72a4d6vuncgcj.apps.googleusercontent.com
+IDClient SECRET cYFaOv2t2KomgT4T3G7gS0P_
+
+
+autenticazione con google 
+https://stackoverflow.com/questions/65395227/react-apollo-graphql-and-google-authentication-flow
+
+
