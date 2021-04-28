@@ -1,5 +1,28 @@
 'use strict';
+const faker = require('faker');
+faker.locale = "it";
+const users = [...Array(10)].map((user) => (
+  { 
+    avatar: '/uploads/avatar1.png',
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(8),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+))
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Users', users, {});
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Users', null, {});
+  }
+}
 
+/*
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
@@ -28,3 +51,5 @@ module.exports = {
     return queryInterface.bulkDelete('Users', null, {});
   }
 };
+
+*/

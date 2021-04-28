@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useContext, useEffect} from 'react';
 import PrimarySearchAppBar from './myAppBar'
+import HomePage from './pages/homePage'
 import { Button, Typography, Box, Paper} from '@material-ui/core'
 import GlobalState from "../store/globalState"
 import '@fontsource/roboto';
@@ -32,7 +33,8 @@ const Ui = ((props) => {
     return (
         
         <Fragment>
-            <PrimarySearchAppBar currentUser={props.currentUser}/>   
+            <PrimarySearchAppBar currentUser={props.currentUser}/>
+            <HomePage/>
         </Fragment>
     )})
 
