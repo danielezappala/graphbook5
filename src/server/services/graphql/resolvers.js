@@ -1,5 +1,5 @@
 require('dotenv').config();
-import logger from'../../helpers/logger';
+import logger from'../../helpers/loggerOLD';
 import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
 import JWT from 'jsonwebtoken';
@@ -10,7 +10,7 @@ console.log('JWT_SECRET '+JWT_SECRET)
 
 export default function resolver() {
     const { db } = this;
-    const { User } = db.models;
+    const { User,Season } = db.models;
 
     const resolvers = {
         
@@ -18,7 +18,17 @@ export default function resolver() {
             currentUser(root, args, context) {
                 console.log('current user context ',context.user)
                 return context.user;
+            },
+            season(root,args,context) {
+                console.log('season ')
+                const {id} = args
+                return Season.findByPk(id);
+            },
+            seasons(root,args,context) {
+                console.log('all seasons ')
+                return Season.findAll();
             }
+
         },
         RootMutation: {
             
@@ -75,6 +85,23 @@ export default function resolver() {
                     }
                 });
             },
+            addSeason(root,{name, startDate },context) {
+                return Season.findAll({
+                    where: {
+                      [Op.or]: [{name}]
+                    },
+                    raw: true,
+                  }).then(async (seasons) => {
+                      if(seasons.length) {
+                          throw new Error('Season with this name already exists');   
+                      } else {
+                               return Season.create({
+                                  name,
+                                  startDate
+                              })
+                          };
+                      })
+            }
         }
     };
 

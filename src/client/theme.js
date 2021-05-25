@@ -1,7 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles'
-import { blue, brown, deepOrange } from '@material-ui/core/colors'
+import { createTheme } from '@material-ui/core/styles'
+import { lightBlue, brown, deepOrange } from '@material-ui/core/colors'
 
-const theme = createMuiTheme({
+const theme = createTheme({
+    spacing: 4,
     typography: {
       useNextVariants: true,
         button: {
@@ -11,9 +12,9 @@ const theme = createMuiTheme({
     },
     palette: {
       primary: {
-      light: blue[400],
-      main: blue[800],  
-      dark: blue[900],
+      light: lightBlue[400],
+      main: lightBlue[800],  
+      dark: lightBlue[900],
       contrastText: '#fff',
     },
     secondary: {

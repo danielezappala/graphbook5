@@ -14,7 +14,17 @@ const typeDefinitions = `
     filename: String!
     url: String!
   }
-  
+  scalar Date
+  type MyType {
+   created: Date
+  }
+
+  type Season {
+    id: Int
+    name: String!
+    startDate: Date!
+  }
+
   input UserInput {
     username: String!
     avatar: String!
@@ -42,11 +52,17 @@ const typeDefinitions = `
       email: String!
       password: String!
     ): Auth
+    addSeason (
+      name: String!
+      startDate: Date!
+    ): Season
   }
 
   type RootQuery {
     usersSearch(page: Int, limit: Int, text: String!): UsersSearch 
     currentUser: User @auth
+    season(id: ID!): Season 
+    seasons: [Season]
   }
 
   schema {

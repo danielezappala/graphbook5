@@ -1,11 +1,10 @@
-    import React, { useEffect, useContext } from 'react';
-    import GlobalState from "../../store/globalState" 
-    import Typography from '@material-ui/core/Typography';
+import React, { Fragment, useState, useContext, useEffect} from 'react';
 
-
-    export default  function HomePage() {
-        
-        const {globalState, globalDispatch} = useContext(GlobalState);
-        
-        return <Typography>Ciao</Typography>
-    }
+export default function HomePage(){
+    return <div 
+        id='homepage' 
+        name='Homepage'
+    >
+        HOME PAGE
+    </div>
+}

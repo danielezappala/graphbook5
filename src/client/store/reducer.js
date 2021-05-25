@@ -55,75 +55,21 @@ const reducer = (state, action) => {
                 ...state,
                 isSettingsDialogOpen: false
             }
-
-        case "INC_ROWSNUM":
-
+        case "SELECT_PAGE":
+            console.log('select page')
             return {
                 ...state,
-                rowsNum: state.rowsNum - 1
+                selectedPageTitle: action.payload
             }
-        case "DEC_ROWSNUM":
 
-            return {
-                ...state,
-                rowsNum: state.rowsNum - 1
-            }
-        case "CHANGE_ROWSNUM":
+        case "SELECTED_SEASON":
 
             return {
                 ...state,
-                rowsNum: action.payload
+                selectedSeason: state.selectedSeason
             }
-        case "CHANGE_COLSNUM":
-
-            return {
-                ...state,
-                colsNum: action.payload
-            }
-
-        case "INC_COLSNUM":
-            return {
-                ...state,
-                colsNum: state.colsNum + 1
-            }
-
-        case "DEC_COLSNUM":
-            return {
-                ...state,
-                colsNum: state.colsNum - 1
-            }
-
-        case "INC_MATCH":
-            return {
-                ...state,
-                match: state.match + 1
-            }
-        case "INC_TOTALTIME":
-            return {
-                ...state,
-                totalTime: state.totalTime + 1
-            }
-        case "DEC_TOTALTIME":
-            return {
-                ...state,
-                totalTime: state.totalTime - 1
-            }
-
-        case "INC_COUNTDOWN":
-            return {
-                ...state,
-                countDown: state.countDown + 1
-            }
-        case "DEC_COUNTDOWN":
-            return {
-                ...state,
-                countDown: state.countDown - 1
-            }
-        case "ROLL_DICES":
-            return {
-                ...state,
-                //rolls:makeRollDices()
-            }
+        
+        
         default:
             {
                 return state

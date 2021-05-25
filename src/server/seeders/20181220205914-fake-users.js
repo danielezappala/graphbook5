@@ -3,7 +3,7 @@ const faker = require('faker');
 faker.locale = "it";
 const users = [...Array(10)].map((user) => (
   { 
-    avatar: '/uploads/avatar1.png',
+    avatar: faker.image.avatar(),
     userName: faker.internet.userName(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),

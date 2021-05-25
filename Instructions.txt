@@ -28,4 +28,5 @@ IDClient SECRET cYFaOv2t2KomgT4T3G7gS0P_
 autenticazione con google 
 https://stackoverflow.com/questions/65395227/react-apollo-graphql-and-google-authentication-flow
 
-
+PER ELIMINARE LE ISTANZE DI NODE
+sudo killall node

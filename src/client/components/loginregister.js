@@ -14,27 +14,20 @@ function LoginForm(props) {
     const {globalState, globalDispatch} = useContext(GlobalState);
     
     const login = (event) => {
+        console.log('login: ' + JSON.stringify(event))
         //event.preventDefault();
         props.login({
             variables: {
-                email: globalState.email,
-                password: globalState.password
+                email: event.email,
+                password: event.password
             },
             errorPolicy:"all"
         });
     };
-   
-    /*
-    const [state, setState] = React.useState({
-        email: '',
-        password: ''
-    });
-    */
-
     return <Login_Signin 
-    mode={'Login'} 
-    authFunction={login}
-    error={error} 
+        mode={'Login'} 
+        authFunction={login}
+        error={error} 
     />
 }
 
@@ -48,13 +41,15 @@ console.log('RegisterForm props',props)
     });
 
     const signup = (event) => {
-        event.preventDefault();
+
+        console.log('signup: ' + JSON.stringify(event))
+        //event.preventDefault();
 
         props.signup({
             variables: {
-                email: state.email, 
-                password: state.password, 
-                username: state.username
+                email: event.email, 
+                password: event.password, 
+                username: event.username
             }
         });
     }
@@ -81,11 +76,11 @@ useEffect(()=>{
                     </div>
                 )}
                 {!globalState.showLogin && (
-                         <div>
+                    <div>
                         <RegisterMutation>
                             <RegisterForm/>
                         </RegisterMutation>
-                             </div>
+                    </div>
                 )}
             </div>
         )

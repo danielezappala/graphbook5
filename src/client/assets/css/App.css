@@ -4,9 +4,9 @@ body {
   font-family: 'Courier New', Courier, monospace
 }
 
-.App {
-    text-align: center;
-  }
+  .App {
+      text-align: center;
+    }
   
   .App-logo {
     height: 40vmin;
@@ -42,4 +42,6 @@ body {
       transform: rotate(360deg);
     }
   }
+
+  
   

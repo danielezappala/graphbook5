@@ -97,20 +97,22 @@ export default function Login_Signin(props) {
     //globalDispatch({ type: "SETUSEREMAIL", payload: response.profileObj.email })
     console.log(globalState.email)
   }
+
   const formik = useFormik({
     initialValues: {
-      email: globalState.email,
-      password: globalState.password
+      email: '',
+      password: ''
     },
     validationSchema: validationSchema, 
-    onSubmit: (event) => {
-      authFunction(event)
+    onSubmit: (event) =>{
+      //event.preventDefault();
+      console.log('event onSubmit ' + JSON.stringify(event))
+      authFunction(event)     
     }
   })
 
   return (
     <Grid container component="main" className={classes.root}>
-      <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
@@ -120,7 +122,6 @@ export default function Login_Signin(props) {
           <Typography component="h1" variant="h5">
             {props.mode}
           </Typography>
-
               <form onSubmit={formik.handleSubmit} className={classes.form} noValidate>
                 <TextField
                   type="email"
@@ -133,13 +134,14 @@ export default function Login_Signin(props) {
                   label="Email Address"
                   autoComplete="email"
                   autoFocus
-                  value={globalState.email}
-                  onChange={(event) => {
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  /*onChange={(event) => {
                     globalDispatch({type: "SETUSEREMAIL", payload:event.target.value})
                   }}
-                  
+                  */
                   error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}    
+                  helperText={formik.touched.email && formik.errors.email}   
                 />
                  <TextField
                   type="password"
@@ -151,12 +153,16 @@ export default function Login_Signin(props) {
                   label="Password"
                   id="password"
                   autoComplete="current-password"
-                  value={globalState.password}
+                  value={formik.values.password}
                   error={formik.touched.password && Boolean(formik.errors.password)}
                   helperText={formik.touched.password && formik.errors.password}
+                  /*
                   onChange={(event) => {
+                    
                     globalDispatch({type: "SETUSERPASSWORD", payload:event.target.value})
                   }}
+                  */
+                  onChange={formik.handleChange}
                 />
                 {props.mode === 'Sign Up' ? (
                   <TextField
@@ -170,6 +176,7 @@ export default function Login_Signin(props) {
                     id="username"
                     autoComplete="current-username"
                     type="username"
+                    onChange={formik.handleChange}
                     //onChange={(event) => setParentState({...parentState, username: event.target.value})} 
                   />) :
                   (<div></div>)}
@@ -206,7 +213,6 @@ export default function Login_Signin(props) {
                       )}
                   </Grid>
                 </Grid>
-
                 <Box mt={10}>
                   <Typography>
                     Login with Google

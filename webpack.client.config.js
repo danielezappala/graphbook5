@@ -1,27 +1,29 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const buildDirectory = 'dist';
 const outputDirectory = buildDirectory + '/client';
+
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
     entry: './src/client/index.js',
     output: {
         path: path.join(__dirname, outputDirectory),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
           {
             test: /\.js$/,
+            loader: 'babel-loader',
             exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader'
-            }
           },
           {
             test: /\.css$/,
-            use: ['style-loader', 'css-loader']
+            use: ['style-loader', 'css-loader'],
+            exclude: /node_modules/
           },
           {   
             test: /\.(woff|woff2|eot|ttf|svg|mp3)$/,
@@ -31,12 +33,13 @@ module.exports = {
     }, 
     devServer: {
         port: 3000,
-        open: true
+        open: true,
+        historyApiFallback: true
     },
     plugins: [
-        new CleanWebpackPlugin({
-          cleanOnceBeforeBuildPatterns: [path.join(__dirname, buildDirectory)]
-        }),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: [path.join(__dirname, buildDirectory)]
+      }),
         new HtmlWebpackPlugin({
           template: './public/index.html'
         })
